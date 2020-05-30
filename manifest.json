@@ -4,7 +4,9 @@
  "description": "ads4",
  "version": "1.0",
  "web_accessible_resources":[
-     "images/*"
+     "images/*",
+     "result.txt",
+     "thumbnail_data/*"
  ],
  "content_scripts": [
  {
