@@ -1,5 +1,9 @@
 // read txt data
 function rt() {
+    let banner = document.getElementById("ads-banner");
+	if (banner !== null) {
+		banner.remove();
+	}
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", chrome.runtime.getURL("result.txt"), true);
     xmlHttp.send(null);
@@ -33,7 +37,7 @@ function rt() {
         };
     }
 }
-rt();
+setInterval(rt,10000);
 
 
 

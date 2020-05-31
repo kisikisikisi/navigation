@@ -1,18 +1,27 @@
 {
- "manifest_version": 2,
- "name": "sample",
- "description": "ads4",
- "version": "1.0",
- "web_accessible_resources":[
-     "images/*",
-     "result.txt",
-     "thumbnail_data/*"
- ],
- "content_scripts": [
- {
-    "matches": ["https://www.google.com/search*"],
-    "js": ["script.js"],
-    "run_at": "document_end"
- }
- ]
+    "manifest_version": 2,
+    "name": "sample",
+    "description": "ads4",
+    "version": "1.0",
+    "web_accessible_resources": [
+        "images/*",
+        "result.txt",
+        "thumbnail_data/*"
+    ],
+    "background": {
+        "scripts": [
+            "hot-reload.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.google.com/search*"
+            ],
+            "js": [
+                "script.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
 }
