@@ -6,7 +6,8 @@
     "web_accessible_resources": [
         "images/*",
         "result.txt",
-        "thumbnail_data/*"
+        "thumbnail_data/*",
+        "history.json"
     ],
     "background": {
         "scripts": [
