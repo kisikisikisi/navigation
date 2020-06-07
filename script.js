@@ -1,6 +1,15 @@
 var list = []
 var title_name;
 
+//var connection = new WebSocket('ws://localhost:8000');
+//connection.onopen = function(e) { };
+var xhr = new XMLHttpRequest();
+     
+xhr.open('POST', "http://localhost:8000/cgi-bin/server.py", true);
+xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+xhr.send('text='+document.title);
+
+
 // read txt data
 function showImage() {
     var xmlHttp = new XMLHttpRequest();
@@ -21,13 +30,13 @@ function showImage() {
         id_list = (data_split.slice(0, data_split.length - 1));
         id = id_list.join('');
 
-        json_load(id,data);
+        json_load(id, data);
     }
 }
 
-
+//サムネイルの要素を追加
 function addElement(data) {
-    
+
     console.log(title_name);
 
     let body = document.body;
@@ -42,9 +51,9 @@ function addElement(data) {
 
     body.insertAdjacentHTML("afterbegin", div);
     const banner = document.getElementById("ads-banner");
-    const text = '<a href=""><font size="4">'+title_name+'</a>';
-    const date = '<p>3日前に閲覧</p>';
-    banner.insertAdjacentHTML("afterbegin", date);
+    const text = '<a href=""><font size="4">' + title_name + '</a>';
+    //const date = '<p>3日前に閲覧</p>';
+    //banner.insertAdjacentHTML("afterbegin", date);
     banner.insertAdjacentHTML("afterbegin", text);
     banner.insertAdjacentHTML("afterbegin", img);
     banner.insertAdjacentHTML("afterbegin", button);
@@ -56,8 +65,8 @@ function addElement(data) {
     };
 }
 
-
-function json_load(id,imgName) {
+//jsonファイルからタイトルを検索
+function json_load(id, imgName) {
     var request = new XMLHttpRequest();
     request.open('GET', chrome.runtime.getURL("history.json"), true);
     request.responseType = 'json';
@@ -69,7 +78,6 @@ function json_load(id,imgName) {
         });
 
         console.log(matchData[0].title);
-        console.log("test");
         title_name = matchData[0].title;
         addElement(imgName);
 
