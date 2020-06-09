@@ -1,5 +1,6 @@
 var list = []
 var title_name;
+var page_url;
 
 //var connection = new WebSocket('ws://localhost:8000');
 //connection.onopen = function(e) { };
@@ -37,7 +38,7 @@ function showImage() {
 //サムネイルの要素を追加
 function addElement(data) {
 
-    console.log(title_name);
+    console.log(page_url);
 
     let body = document.body;
     let div = '<div id="ads-banner" style="position: fixed; float: right; top: auto;right: 60px; bottom: 0; width: auto; height: auto; max-width: 320px; margin: 0 0 0 110px; z-index: 2; border: 1px solid #aaa; padding: 5px; background-color: white; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);"></div>';
@@ -51,7 +52,7 @@ function addElement(data) {
 
     body.insertAdjacentHTML("afterbegin", div);
     const banner = document.getElementById("ads-banner");
-    const text = '<a href=""><font size="4">' + title_name + '</a>';
+    const text = '<a href=' + page_url + '><font size="4">' + title_name + '</a>';
     //const date = '<p>3日前に閲覧</p>';
     //banner.insertAdjacentHTML("afterbegin", date);
     banner.insertAdjacentHTML("afterbegin", text);
@@ -79,6 +80,7 @@ function json_load(id, imgName) {
 
         console.log(matchData[0].title);
         title_name = matchData[0].title;
+        page_url = matchData[0].url;
         addElement(imgName);
 
     }
